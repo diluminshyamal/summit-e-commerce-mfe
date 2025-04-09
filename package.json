@@ -1,0 +1,20 @@
+{
+  "name": "frontends",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:auth": "cd sysco-ecommerce-auth-mfe && npm run start",
+    "start:cart": "cd sysco-ecommerce-cart-mfe && npm run start",
+    "start:home": "cd sysco-ecommerce-home-mfe && npm run start",
+    "start:navbar": "cd sysco-ecommerce-navbar-mfe && npm run start",
+    "start:root": "cd sysco-ecommerce-root-mfe && npm run start",
+    "setup": "concurrently \"npm run start:auth\" \"npm run start:cart\" \"npm run start:home\" \"npm run start:navbar\" \"npm run start:root\" "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "8.2.2"
+  }
+}

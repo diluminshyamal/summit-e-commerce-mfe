@@ -1,0 +1,15 @@
+<single-spa-router base="/">
+  <main>
+    <route path="login">
+      <application name="sysco-ecommerce-auth-mfe"></application>
+    </route>
+    <route default>
+      <application name="sysco-ecommerce-navbar-mfe"></application>
+      <application name="sysco-ecommerce-home-mfe"></application>
+    </route>
+    <route path="carts">
+      <application name="sysco-ecommerce-navbar-mfe"></application>
+      <application name="sysco-ecommerce-cart-mfe"></application>
+    </route>
+  </main>
+</single-spa-router>
