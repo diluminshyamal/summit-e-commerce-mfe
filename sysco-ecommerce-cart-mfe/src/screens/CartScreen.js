@@ -8,9 +8,12 @@ import {
   InputNumber,
   message,
   Spin,
+  Modal,
+  Result,
 } from "antd";
 import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { getCart } from "../services/cartService";
+import OrderHistoryBox from "../components/OrderHistoryBox";
 
 const { Title, Text } = Typography;
 
@@ -18,8 +21,11 @@ const CartScreen = ({ onUpdateCart }) => {
   const [cartItems, setCartItems] = useState([]);
   const [processedCartItems, setProcessedCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const cartId = localStorage.getItem("cartId");
   console.log("HII", cartId);
+
   useEffect(() => {
     const fetchCartItems = async () => {
       setLoading(true);
@@ -69,6 +75,10 @@ const CartScreen = ({ onUpdateCart }) => {
     setProcessedCartItems((prevItems) =>
       prevItems.filter((item) => item.id !== id)
     );
+  };
+
+  const handleCheckout = () => {
+    setIsModalVisible(true);
   };
 
   const columns = [
@@ -151,12 +161,26 @@ const CartScreen = ({ onUpdateCart }) => {
         <div style={{ textAlign: "right", marginTop: "24px" }}>
           <Title level={4}>Total: ${totalCartValue.toFixed(2)}</Title>
           <Space>
-            <Button type="primary" size="large">
+            <Button type="primary" size="large" onClick={handleCheckout}>
               Checkout
             </Button>
           </Space>
         </div>
       </Card>
+      <OrderHistoryBox />
+
+      <Modal
+        open={isModalVisible}
+        footer={null}
+        closable={false}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <Result
+          status="success"
+          title="Purchase Successful!"
+          subTitle="Thank you for shopping with us."
+        />
+      </Modal>
     </div>
   );
 };

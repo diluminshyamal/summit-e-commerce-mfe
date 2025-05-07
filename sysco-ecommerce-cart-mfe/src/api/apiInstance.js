@@ -8,3 +8,7 @@ export const cartApiInstance = axios.create({
 export const productApiInstance = axios.create({
   baseURL: `${config.baseURL}/bff/api/v1/products`,
 });
+
+export const orderApiInstance = axios.create({
+  baseURL: `${config.baseURL}/bff/api/v1/order`,
+});
